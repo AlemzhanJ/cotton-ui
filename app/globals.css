@@ -126,11 +126,63 @@ body {
 .cotton-stitched::after {
   content: '';
   position: absolute;
-  inset: 8px;
-  border: 1.5px dashed rgba(180, 170, 160, 0.4);
+  inset: 6px;
   border-radius: 18px;
   pointer-events: none;
   z-index: 10;
+  /* Realistic stitch pattern using multiple gradients */
+  background:
+    /* Top edge stitches */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Bottom edge stitches */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Left edge stitches */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Right edge stitches */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    );
+  background-size:
+    100% 1.5px,  /* Top */
+    100% 1.5px,  /* Bottom */
+    1.5px 100%,  /* Left */
+    1.5px 100%;  /* Right */
+  background-position:
+    0 0,           /* Top */
+    0 100%,        /* Bottom */
+    0 0,           /* Left */
+    100% 0;        /* Right */
+  background-repeat: no-repeat;
 }
 
 /* Combined texture + stitch */
@@ -156,9 +208,61 @@ body {
 .cotton-fabric::after {
   content: '';
   position: absolute;
-  inset: 8px;
-  border: 1.5px dashed rgba(180, 170, 160, 0.4);
+  inset: 6px;
   border-radius: 18px;
   pointer-events: none;
   z-index: 10;
+  /* Realistic stitch pattern using multiple gradients */
+  background:
+    /* Top edge stitches */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Bottom edge stitches */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Left edge stitches */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    ),
+    /* Right edge stitches */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(120, 110, 100, 0.5) 2px,
+      rgba(120, 110, 100, 0.5) 8px,
+      transparent 8px,
+      transparent 14px
+    );
+  background-size:
+    100% 1.5px,  /* Top */
+    100% 1.5px,  /* Bottom */
+    1.5px 100%,  /* Left */
+    1.5px 100%;  /* Right */
+  background-position:
+    0 0,           /* Top */
+    0 100%,        /* Bottom */
+    0 0,           /* Left */
+    100% 0;        /* Right */
+  background-repeat: no-repeat;
 }
