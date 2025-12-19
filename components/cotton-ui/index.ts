@@ -17,3 +17,6 @@ export type { CottonDropdownProps, CottonDropdownItem } from './CottonDropdown';
 
 export { CottonTextarea } from './CottonTextarea';
 export type { CottonTextareaProps } from './CottonTextarea';
+
+export { CottonToggle } from './CottonToggle';
+export type { CottonToggleProps } from './CottonToggle';

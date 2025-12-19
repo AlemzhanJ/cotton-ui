@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea } from '@/components/cotton-ui';
+import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea, CottonToggle } from '@/components/cotton-ui';
 
 // Icons for demo
 const PlusIcon = () => (
@@ -30,6 +30,7 @@ const GitHubIcon = () => (
 
 export default function Home() {
   const [dropdownValue, setDropdownValue] = useState('option1');
+  const [toggleValue, setToggleValue] = useState(false);
 
   const dropdownItems = [
     { label: 'Option 1', value: 'option1' },
@@ -130,6 +131,17 @@ export default function Home() {
               <CottonCard padding="lg" withStitch>
                 <p className="text-sm text-cotton-gray-600">Large padding</p>
               </CottonCard>
+            </div>
+          </CottonCard>
+
+          {/* Toggle showcase */}
+          <CottonCard padding="lg" withStitch className="md:col-span-2">
+            <h3 className="text-lg font-medium text-cotton-gray-700 mb-4">Toggle</h3>
+            <div className="flex justify-center pb-8">
+              <CottonToggle
+                checked={toggleValue}
+                onCheckedChange={setToggleValue}
+              />
             </div>
           </CottonCard>
         </div>

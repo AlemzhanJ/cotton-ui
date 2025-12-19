@@ -473,6 +473,17 @@ body {
     inset 0 -2px 4px rgba(0, 0, 0, 0.04);
 }
 
+/* Toggle stitched border */
+.cotton-toggle-stitched::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 30;
+  border: 1px dashed rgba(100, 90, 80, 0.15);
+}
+
 /* Background fabric texture */
 .cotton-bg-texture::after {
   content: '';
