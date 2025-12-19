@@ -1,8 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cotton UI Design Tokens */
+
+  /* Base colors - soft, muted palette */
+  --cotton-white: #fefefe;
+  --cotton-cream: #faf9f7;
+  --cotton-gray-50: #f8f7f5;
+  --cotton-gray-100: #f0eeeb;
+  --cotton-gray-200: #e5e3df;
+  --cotton-gray-300: #d4d1cc;
+  --cotton-gray-400: #a8a49e;
+  --cotton-gray-500: #7a766f;
+  --cotton-gray-600: #5c5852;
+  --cotton-gray-700: #3d3a36;
+  --cotton-gray-800: #2a2825;
+  --cotton-gray-900: #1a1917;
+
+  /* Accent colors - soft pastels */
+  --cotton-blue: #b8d4e3;
+  --cotton-blue-light: #d4e6f0;
+  --cotton-sky: #c5dde8;
+
+  /* Shadows - very soft, diffused */
+  --cotton-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+  --cotton-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+  --cotton-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.03);
+  --cotton-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.06), 0 16px 48px rgba(0, 0, 0, 0.04);
+
+  /* Border radius - soft, rounded */
+  --cotton-radius-sm: 8px;
+  --cotton-radius: 12px;
+  --cotton-radius-md: 16px;
+  --cotton-radius-lg: 20px;
+  --cotton-radius-xl: 24px;
+  --cotton-radius-full: 9999px;
+
+  /* Blur for glassmorphism effect */
+  --cotton-blur: 12px;
+  --cotton-blur-lg: 24px;
+
+  --background: var(--cotton-cream);
+  --foreground: var(--cotton-gray-800);
 }
 
 @theme inline {
@@ -10,17 +49,116 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Cotton colors for Tailwind */
+  --color-cotton-white: var(--cotton-white);
+  --color-cotton-cream: var(--cotton-cream);
+  --color-cotton-gray-50: var(--cotton-gray-50);
+  --color-cotton-gray-100: var(--cotton-gray-100);
+  --color-cotton-gray-200: var(--cotton-gray-200);
+  --color-cotton-gray-300: var(--cotton-gray-300);
+  --color-cotton-gray-400: var(--cotton-gray-400);
+  --color-cotton-gray-500: var(--cotton-gray-500);
+  --color-cotton-gray-600: var(--cotton-gray-600);
+  --color-cotton-gray-700: var(--cotton-gray-700);
+  --color-cotton-gray-800: var(--cotton-gray-800);
+  --color-cotton-gray-900: var(--cotton-gray-900);
+  --color-cotton-blue: var(--cotton-blue);
+  --color-cotton-blue-light: var(--cotton-blue-light);
+  --color-cotton-sky: var(--cotton-sky);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--cotton-gray-900);
+    --foreground: var(--cotton-gray-100);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Cotton canvas/linen texture - woven fabric pattern */
+.cotton-texture {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Base canvas weave texture */
+.cotton-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* Horizontal threads */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.02) 1px,
+      rgba(0, 0, 0, 0.02) 2px
+    ),
+    /* Vertical threads */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.02) 1px,
+      rgba(0, 0, 0, 0.02) 2px
+    ),
+    /* Subtle noise for fabric feel */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 4px 4px, 4px 4px, 150px 150px;
+  opacity: 0.6;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Stitched border effect - real stitch line like sewing */
+.cotton-stitched {
+  position: relative;
+}
+
+.cotton-stitched::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed rgba(180, 170, 160, 0.4);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Combined texture + stitch */
+.cotton-fabric {
+  position: relative;
+  overflow: hidden;
+}
+
+.cotton-fabric::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* Subtle noise for fabric feel */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  opacity: 0.03;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.cotton-fabric::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed rgba(180, 170, 160, 0.4);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 10;
 }
