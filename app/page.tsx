@@ -141,7 +141,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <CottonButton variant="outline" withStitch>
+          <CottonButton variant="solid" withStitch>
             <GitHubIcon />
             <span>GitHub</span>
           </CottonButton>
