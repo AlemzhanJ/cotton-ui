@@ -40,10 +40,7 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center p-8 cotton-bg-texture"
-      style={{
-        background: 'linear-gradient(180deg, #d4e6f0 0%, #c5dde8 30%, #b8d4e3 60%, #a8c9db 100%)',
-      }}
+      className="min-h-screen flex flex-col items-center justify-center p-8 bg-cotton-gray-100"
     >
     
 

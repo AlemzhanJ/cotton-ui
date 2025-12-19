@@ -76,7 +76,7 @@
 }
 
 html {
-  background: #a8c9db;
+  background: var(--cotton-gray-100);
 }
 
 body {
