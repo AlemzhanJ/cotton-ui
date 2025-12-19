@@ -83,7 +83,7 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
             {offLabel}
           </span>
 
-          {/* Zipper teeth - clip from right */}
+          {/* Zipper teeth - closed (interlocked) */}
           <div
             className="absolute left-[20px] top-1/2 -translate-y-1/2 h-[36px] flex items-center overflow-hidden"
             style={{
@@ -102,6 +102,56 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
                   style={{
                     marginLeft: i === 0 ? 0 : '-16px',
                     transform: i % 2 === 0 ? 'translateY(-3px)' : 'translateY(3px)',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Zipper teeth - open top row */}
+          <div
+            className="absolute left-[14px] top-1/2 h-[36px] flex items-center overflow-hidden"
+            style={{
+              width: '140px',
+              clipPath: checked ? 'inset(0 0 0 100%)' : 'inset(0 0 0 0)',
+              transition: 'clip-path 0.3s ease-out, transform 0.3s ease-out',
+              transform: checked ? 'translateY(-50%)' : 'translateY(-70%)',
+            }}
+          >
+            <div className="flex items-center h-full">
+              {Array.from({ length: teethCount / 2 }).map((_, i) => (
+                <img
+                  key={i}
+                  src="/zipper-tooth.png"
+                  alt=""
+                  className="h-[32px] w-auto object-contain flex-shrink-0"
+                  style={{
+                    marginLeft: i === 0 ? 0 : '-8px',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Zipper teeth - open bottom row */}
+          <div
+            className="absolute left-[20px] top-1/2 h-[36px] flex items-center overflow-hidden"
+            style={{
+              width: '140px',
+              clipPath: checked ? 'inset(0 0 0 100%)' : 'inset(0 0 0 0)',
+              transition: 'clip-path 0.3s ease-out, transform 0.3s ease-out',
+              transform: checked ? 'translateY(-50%)' : 'translateY(-30%)',
+            }}
+          >
+            <div className="flex items-center h-full">
+              {Array.from({ length: teethCount / 2 }).map((_, i) => (
+                <img
+                  key={i}
+                  src="/zipper-tooth.png"
+                  alt=""
+                  className="h-[32px] w-auto object-contain flex-shrink-0"
+                  style={{
+                    marginLeft: i === 0 ? 0 : '-8px',
                   }}
                 />
               ))}
