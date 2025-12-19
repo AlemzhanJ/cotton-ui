@@ -9,24 +9,23 @@ export interface CottonInputProps extends InputHTMLAttributes<HTMLInputElement> 
   endIcon?: ReactNode;
   /** Additional wrapper className */
   wrapperClassName?: string;
+  /** Show stitched border */
+  withStitch?: boolean;
 }
 
 export const CottonInput = forwardRef<HTMLInputElement, CottonInputProps>(
-  ({ startIcon, endIcon, wrapperClassName = '', className = '', ...props }, ref) => {
+  ({ startIcon, endIcon, wrapperClassName = '', className = '', withStitch = false, ...props }, ref) => {
     return (
       <div
         className={`
           relative flex items-center gap-3
-          bg-cotton-white
-          rounded-[var(--cotton-radius-lg)]
-          shadow-[var(--cotton-shadow)]
-          border border-cotton-gray-100
+          bg-cotton-gray-50
+          rounded-[var(--cotton-radius)]
           px-4 py-3
           transition-all duration-200 ease-out
-          hover:shadow-[var(--cotton-shadow-md)]
-          focus-within:shadow-[var(--cotton-shadow-md)]
-          focus-within:border-cotton-gray-200
           cotton-texture
+          cotton-input
+          ${withStitch ? 'cotton-btn-stitched' : ''}
           ${wrapperClassName}
         `}
       >

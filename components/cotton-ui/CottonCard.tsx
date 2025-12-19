@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { forwardRef, HTMLAttributes } from 'react';
 
 export interface CottonCardProps extends HTMLAttributes<HTMLDivElement> {
   /** Whether to apply the fabric texture */
@@ -34,8 +34,6 @@ export const CottonCard = forwardRef<HTMLDivElement, CottonCardProps>(
         className={`
           bg-cotton-white
           rounded-[var(--cotton-radius-xl)]
-          shadow-[var(--cotton-shadow)]
-          border border-cotton-gray-100
           ${paddingStyles[padding]}
           ${textureClass}
           ${className}

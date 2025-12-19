@@ -16,6 +16,8 @@ export interface CottonButtonProps extends ButtonHTMLAttributes<HTMLButtonElemen
   endIcon?: ReactNode;
   /** Make button full width */
   fullWidth?: boolean;
+  /** Show stitched border */
+  withStitch?: boolean;
 }
 
 const variantStyles: Record<CottonButtonVariant, string> = {
@@ -23,13 +25,13 @@ const variantStyles: Record<CottonButtonVariant, string> = {
     bg-cotton-gray-700 text-cotton-white
     hover:bg-cotton-gray-600
     active:bg-cotton-gray-800
-    shadow-[var(--cotton-shadow-sm)]
-    hover:shadow-[var(--cotton-shadow)]
+    cotton-pillow cotton-pillow-dark cotton-texture
   `,
   soft: `
     bg-cotton-gray-100 text-cotton-gray-700
     hover:bg-cotton-gray-200
     active:bg-cotton-gray-300
+    cotton-pillow cotton-texture
   `,
   outline: `
     bg-cotton-white text-cotton-gray-600
@@ -37,13 +39,13 @@ const variantStyles: Record<CottonButtonVariant, string> = {
     hover:bg-cotton-gray-50
     hover:border-cotton-gray-300
     active:bg-cotton-gray-100
-    shadow-[var(--cotton-shadow-sm)]
-    hover:shadow-[var(--cotton-shadow)]
+    cotton-pillow cotton-texture
   `,
   ghost: `
     bg-transparent text-cotton-gray-600
     hover:bg-cotton-gray-100
     active:bg-cotton-gray-200
+    cotton-texture
   `,
 };
 
@@ -61,6 +63,7 @@ export const CottonButton = forwardRef<HTMLButtonElement, CottonButtonProps>(
       startIcon,
       endIcon,
       fullWidth = false,
+      withStitch = false,
       className = '',
       children,
       disabled,
@@ -80,6 +83,7 @@ export const CottonButton = forwardRef<HTMLButtonElement, CottonButtonProps>(
           ${variantStyles[variant]}
           ${sizeStyles[size]}
           ${fullWidth ? 'w-full' : ''}
+          ${withStitch ? 'cotton-btn-stitched' : ''}
           ${className}
         `}
         disabled={disabled}

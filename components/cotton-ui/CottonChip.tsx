@@ -9,10 +9,12 @@ export interface CottonChipProps extends ButtonHTMLAttributes<HTMLButtonElement>
   selected?: boolean;
   /** Show dropdown indicator */
   hasDropdown?: boolean;
+  /** Show stitched border */
+  withStitch?: boolean;
 }
 
 export const CottonChip = forwardRef<HTMLButtonElement, CottonChipProps>(
-  ({ icon, selected = false, hasDropdown = false, className = '', children, ...props }, ref) => {
+  ({ icon, selected = false, hasDropdown = false, withStitch = false, className = '', children, ...props }, ref) => {
     return (
       <button
         ref={ref}
@@ -23,13 +25,12 @@ export const CottonChip = forwardRef<HTMLButtonElement, CottonChipProps>(
           rounded-[var(--cotton-radius-full)]
           transition-all duration-200 ease-out
           cursor-pointer
-          border
-          ${
-            selected
-              ? 'bg-cotton-white text-cotton-gray-700 border-cotton-gray-200 shadow-[var(--cotton-shadow)]'
-              : 'bg-cotton-gray-50 text-cotton-gray-500 border-cotton-gray-100 hover:bg-cotton-white hover:border-cotton-gray-200 hover:shadow-[var(--cotton-shadow-sm)]'
+          cotton-texture cotton-pillow
+          ${selected
+            ? 'bg-cotton-white text-cotton-gray-700'
+            : 'bg-cotton-gray-100 text-cotton-gray-500 hover:bg-cotton-gray-200'
           }
-          active:scale-[0.98]
+          ${withStitch ? 'cotton-btn-stitched cotton-stitch-rounded' : ''}
           disabled:opacity-50 disabled:cursor-not-allowed
           ${className}
         `}

@@ -11,3 +11,9 @@ export type { CottonChipProps } from './CottonChip';
 
 export { CottonCard } from './CottonCard';
 export type { CottonCardProps } from './CottonCard';
+
+export { CottonDropdown } from './CottonDropdown';
+export type { CottonDropdownProps, CottonDropdownItem } from './CottonDropdown';
+
+export { CottonTextarea } from './CottonTextarea';
+export type { CottonTextareaProps } from './CottonTextarea';
