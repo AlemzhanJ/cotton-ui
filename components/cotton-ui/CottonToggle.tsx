@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef, InputHTMLAttributes } from 'react';
+import Image from 'next/image';
 
 export interface CottonToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   /** Whether the toggle is checked */
@@ -13,6 +14,8 @@ export interface CottonToggleProps extends Omit<InputHTMLAttributes<HTMLInputEle
   offLabel?: string;
   /** Label for on state */
   onLabel?: string;
+  /** Mute sound */
+  muted?: boolean;
 }
 
 export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
@@ -22,12 +25,21 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
     withStitch = true,
     offLabel = 'OFF',
     onLabel = 'ON',
+    muted = false,
     className = '',
     onChange,
     ...props
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onCheckedChange?.(e.target.checked);
+      const isChecked = e.target.checked;
+
+      // Play sound
+      if (!muted) {
+        const audio = new Audio('/zip.ogg');
+        audio.play().catch(() => {});
+      }
+
+      onCheckedChange?.(isChecked);
       onChange?.(e);
     };
 
@@ -88,20 +100,23 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
             className="absolute left-[20px] top-1/2 -translate-y-1/2 h-[36px] flex items-center overflow-hidden"
             style={{
               width: '140px',
-              clipPath: checked ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+              clipPath: checked ? 'inset(0 100% 0 0)' : 'inset(0 0 0 0)',
               transition: 'clip-path 0.3s ease-out',
             }}
           >
             <div className="flex items-center h-full">
               {Array.from({ length: teethCount }).map((_, i) => (
-                <img
+                <Image
                   key={i}
                   src="/zipper-tooth.png"
                   alt=""
+                  width={16}
+                  height={32}
                   className="h-[32px] w-auto object-contain flex-shrink-0"
                   style={{
                     marginLeft: i === 0 ? 0 : '-16px',
                     transform: i % 2 === 0 ? 'translateY(-3px)' : 'translateY(3px)',
+                    filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.25))',
                   }}
                 />
               ))}
@@ -113,20 +128,23 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
             className="absolute left-[14px] top-1/2 h-[36px] flex items-center overflow-hidden"
             style={{
               width: '140px',
-              clipPath: checked ? 'inset(0 0 0 100%)' : 'inset(0 0 0 0)',
+              clipPath: checked ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
               transition: 'clip-path 0.3s ease-out, transform 0.3s ease-out',
-              transform: checked ? 'translateY(-50%)' : 'translateY(-70%)',
+              transform: checked ? 'translateY(-70%)' : 'translateY(-50%)',
             }}
           >
             <div className="flex items-center h-full">
               {Array.from({ length: teethCount / 2 }).map((_, i) => (
-                <img
+                <Image
                   key={i}
                   src="/zipper-tooth.png"
                   alt=""
+                  width={16}
+                  height={32}
                   className="h-[32px] w-auto object-contain flex-shrink-0"
                   style={{
                     marginLeft: i === 0 ? 0 : '-8px',
+                    filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.25))',
                   }}
                 />
               ))}
@@ -138,20 +156,23 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
             className="absolute left-[20px] top-1/2 h-[36px] flex items-center overflow-hidden"
             style={{
               width: '140px',
-              clipPath: checked ? 'inset(0 0 0 100%)' : 'inset(0 0 0 0)',
+              clipPath: checked ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
               transition: 'clip-path 0.3s ease-out, transform 0.3s ease-out',
-              transform: checked ? 'translateY(-50%)' : 'translateY(-30%)',
+              transform: checked ? 'translateY(-30%)' : 'translateY(-50%)',
             }}
           >
             <div className="flex items-center h-full">
               {Array.from({ length: teethCount / 2 }).map((_, i) => (
-                <img
+                <Image
                   key={i}
                   src="/zipper-tooth.png"
                   alt=""
+                  width={16}
+                  height={32}
                   className="h-[32px] w-auto object-contain flex-shrink-0"
                   style={{
                     marginLeft: i === 0 ? 0 : '-8px',
+                    filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.25))',
                   }}
                 />
               ))}
@@ -165,11 +186,11 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
           style={{
             left: '20px',
             top: '50%',
-            transform: checked ? 'translateX(70px) translateY(-35%)' : 'translateX(-50px) translateY(-35%)',
+            transform: checked ? 'translateX(-50px) translateY(-20%)' : 'translateX(70px) translateY(-20%)',
             transition: 'transform 0.3s ease-out',
           }}
         >
-          <img
+          <Image
             src="/zipper-slider.png"
             alt=""
             width={120}
