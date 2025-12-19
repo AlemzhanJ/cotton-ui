@@ -24,8 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{ backgroundColor: '#f0eeeb' }}>
+      <head>
+        <meta name="theme-color" content="#f0eeeb" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#f0eeeb" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cotton-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ backgroundColor: '#f0eeeb' }}
       >
         {children}
       </body>
