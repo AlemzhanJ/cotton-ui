@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 export interface CottonToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -30,13 +30,20 @@ export const CottonToggle = forwardRef<HTMLInputElement, CottonToggleProps>(
     onChange,
     ...props
   }, ref) => {
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    useEffect(() => {
+      audioRef.current = new Audio('/zip.ogg');
+      audioRef.current.preload = 'auto';
+    }, []);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const isChecked = e.target.checked;
 
       // Play sound
-      if (!muted) {
-        const audio = new Audio('/zip.ogg');
-        audio.play().catch(() => {});
+      if (!muted && audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(() => {});
       }
 
       onCheckedChange?.(isChecked);
