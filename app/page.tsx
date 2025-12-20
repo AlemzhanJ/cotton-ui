@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea, CottonToggle } from '@/components/cotton-ui';
+import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea, CottonToggle, CottonPromptInput } from '@/components/cotton-ui';
 
 // Icons for demo
 const PlusIcon = () => (
@@ -19,6 +19,46 @@ const CloudIcon = () => (
 const AgentIcon = () => (
   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
+const ImageIcon = () => (
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+);
+
+const FigmaIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+    <path d="M8 24C10.2091 24 12 22.2091 12 20V16H8C5.79086 16 4 17.7909 4 20C4 22.2091 5.79086 24 8 24Z" fill="#0ACF83"/>
+    <path d="M4 12C4 9.79086 5.79086 8 8 8H12V16H8C5.79086 16 4 14.2091 4 12Z" fill="#A259FF"/>
+    <path d="M4 4C4 1.79086 5.79086 0 8 0H12V8H8C5.79086 8 4 6.20914 4 4Z" fill="#F24E1E"/>
+    <path d="M12 0H16C18.2091 0 20 1.79086 20 4C20 6.20914 18.2091 8 16 8H12V0Z" fill="#FF7262"/>
+    <path d="M20 12C20 14.2091 18.2091 16 16 16C13.7909 16 12 14.2091 12 12C12 9.79086 13.7909 8 16 8C18.2091 8 20 9.79086 20 12Z" fill="#1ABCFE"/>
+  </svg>
+);
+
+const SupabaseIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 109 113" fill="none">
+    <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint0_linear)"/>
+    <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint1_linear)" fillOpacity="0.2"/>
+    <path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/>
+    <defs>
+      <linearGradient id="paint0_linear" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#249361"/>
+        <stop offset="1" stopColor="#3ECF8E"/>
+      </linearGradient>
+      <linearGradient id="paint1_linear" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse">
+        <stop/>
+        <stop offset="1" stopOpacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
   </svg>
 );
 
@@ -45,6 +85,10 @@ export default function Home() {
   const [dropdownValue, setDropdownValue] = useState('option1');
   const [toggleValue, setToggleValue] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [promptValue, setPromptValue] = useState('');
+  const [modelValue, setModelValue] = useState('auto');
+  const [providerValue, setProviderValue] = useState('cloud');
+  const [modeValue, setModeValue] = useState('agent');
 
   const dropdownItems = [
     { label: 'Option 1', value: 'option1' },
@@ -53,12 +97,36 @@ export default function Home() {
     { label: 'Disabled', value: 'disabled', disabled: true },
   ];
 
+  const modelItems = [
+    { label: 'Auto', value: 'auto', icon: <CheckIcon /> },
+    { label: 'GPT-5 Codex', value: 'gpt5-codex' },
+    { label: 'Gemini 2.5 Pro', value: 'gemini-2.5-pro' },
+    { label: 'GPT-5', value: 'gpt5' },
+    { label: 'Claude Sonnet 4', value: 'claude-sonnet-4' },
+    { label: 'Claude Sonnet 4.5', value: 'claude-sonnet-4.5' },
+    { label: 'GPT-4.1', value: 'gpt-4.1' },
+  ];
+
+  const providerItems = [
+    { label: 'Cloud', value: 'cloud', icon: <CloudIcon /> },
+    { label: 'GitHub', value: 'github', icon: <GitHubIcon /> },
+  ];
+
+  const modeItems = [
+    { label: 'Agent', value: 'agent', icon: <AgentIcon /> },
+    { label: 'Ask', value: 'ask', icon: <CloudIcon /> },
+  ];
+
+  const attachmentItems = [
+    { label: 'Add photos', value: 'photos', icon: <ImageIcon /> },
+    { label: 'Import from Figma', value: 'figma', icon: <FigmaIcon /> },
+    { label: 'Connect Supabase', value: 'supabase', icon: <SupabaseIcon /> },
+  ];
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center p-8 bg-cotton-gray-100"
     >
-    
-
       {/* Component showcase */}
       <div className="w-full max-w-4xl relative z-10">
         <h2 className="text-2xl font-semibold text-cotton-gray-700 mb-8 text-center">
@@ -169,6 +237,53 @@ export default function Home() {
               />
             </div>
           </CottonCard>
+
+          {/* Prompt Input Panel */}
+          <div className="md:col-span-2">
+            <h3 className="text-lg font-medium text-cotton-gray-700 mb-4">Prompt Input</h3>
+            <CottonPromptInput
+              value={promptValue}
+              onChange={setPromptValue}
+              onSubmit={(value) => console.log('Submit:', value)}
+              attachmentItems={attachmentItems}
+              onAttachmentSelect={(item) => console.log('Selected:', item.value)}
+              leftChips={[
+                {
+                  label: modelValue === 'auto' ? 'Auto' : modelItems.find(m => m.value === modelValue)?.label || 'Auto',
+                  items: modelItems.map(item => ({
+                    ...item,
+                    icon: item.value === modelValue ? <CheckIcon /> : undefined
+                  })),
+                  value: modelValue,
+                  onSelect: (item) => setModelValue(item.value),
+                },
+              ]}
+              rightChips={[
+                {
+                  label: providerValue === 'cloud' ? 'Cloud' : 'GitHub',
+                  icon: <CloudIcon />,
+                  selected: true,
+                  items: providerItems.map(item => ({
+                    ...item,
+                    icon: item.value === providerValue ? <CheckIcon /> : item.icon
+                  })),
+                  value: providerValue,
+                  onSelect: (item) => setProviderValue(item.value),
+                },
+                {
+                  label: modeValue === 'agent' ? 'Agent' : 'Ask',
+                  icon: <AgentIcon />,
+                  selected: true,
+                  items: modeItems.map(item => ({
+                    ...item,
+                    icon: item.value === modeValue ? <CheckIcon /> : item.icon
+                  })),
+                  value: modeValue,
+                  onSelect: (item) => setModeValue(item.value),
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
         {/* Footer */}

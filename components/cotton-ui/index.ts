@@ -20,3 +20,6 @@ export type { CottonTextareaProps } from './CottonTextarea';
 
 export { CottonToggle } from './CottonToggle';
 export type { CottonToggleProps } from './CottonToggle';
+
+export { CottonPromptInput } from './CottonPromptInput';
+export type { CottonPromptInputProps, CottonPromptChip } from './CottonPromptInput';
