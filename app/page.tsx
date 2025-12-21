@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea, CottonToggle, CottonPromptInput } from '@/components/cotton-ui';
+import { CottonInput, CottonButton, CottonChip, CottonCard, CottonDropdown, CottonTextarea, CottonToggle, CottonPromptInput, CottonCloudNavbar } from '@/components/cotton-ui';
 
 // Icons for demo
 const PlusIcon = () => (
@@ -81,6 +81,10 @@ const SoundOffIcon = () => (
   </svg>
 );
 
+const CottonLogo = () => (
+  <span className="text-lg font-semibold text-cotton-gray-700">Cotton UI</span>
+);
+
 export default function Home() {
   const [dropdownValue, setDropdownValue] = useState('option1');
   const [toggleValue, setToggleValue] = useState(false);
@@ -123,12 +127,29 @@ export default function Home() {
     { label: 'Connect Supabase', value: 'supabase', icon: <SupabaseIcon /> },
   ];
 
+  const navItems = [
+    { label: 'Home', href: '#', active: true },
+    { label: 'Components', href: '#components' },
+    { label: 'GitHub', href: 'https://github.com/AlemzhanJ/cotton-ui' },
+  ];
+
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center p-8 bg-cotton-gray-100"
-    >
+    <div className="min-h-screen bg-[#aed2e6]">
+      {/* Cloud Navbar */}
+      <CottonCloudNavbar
+        logo={<CottonLogo />}
+        items={navItems}
+        ctaButton={
+          <a href="https://github.com/AlemzhanJ/cotton-ui" target="_blank" rel="noopener noreferrer">
+            <CottonButton variant="solid" size="sm" withStitch>
+              Get Started
+            </CottonButton>
+          </a>
+        }
+      />
+
       {/* Component showcase */}
-      <div className="w-full max-w-4xl relative z-10">
+      <div className="w-full max-w-4xl mx-auto px-8 py-12 relative z-10" id="components">
         <h2 className="text-2xl font-semibold text-cotton-gray-700 mb-8 text-center">
           Cotton UI Components
         </h2>
@@ -284,6 +305,12 @@ export default function Home() {
               ]}
             />
           </div>
+
+          {/* Cloud Navbar Info */}
+          <CottonCard padding="lg" withStitch className="md:col-span-2">
+            <h3 className="text-lg font-medium text-cotton-gray-700">Cloud Navbar</h3>
+            <p className="text-cotton-gray-500">Look up — the navbar has soft blurred edges</p>
+          </CottonCard>
         </div>
       </div>
         {/* Footer */}

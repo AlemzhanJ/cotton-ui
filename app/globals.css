@@ -76,11 +76,11 @@
 }
 
 html {
-  background: #f0eeeb;
+  background: #aed2e6;
 }
 
 body {
-  background: var(--background);
+  background: #aed2e6;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overscroll-behavior: none;
@@ -492,4 +492,25 @@ body {
   background-color: rgba(255, 255, 255, 0.15);
   pointer-events: none;
   z-index: 0;
+}
+
+/* =====================================================
+   CLOUD NAVBAR STYLES
+   Soft blur with faded bottom edge
+   ===================================================== */
+
+/* Faded bottom edge - mask gradient */
+.cloud-fade-bottom {
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 50%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 50%,
+    transparent 100%
+  );
 }

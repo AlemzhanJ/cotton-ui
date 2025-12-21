@@ -23,3 +23,6 @@ export type { CottonToggleProps } from './CottonToggle';
 
 export { CottonPromptInput } from './CottonPromptInput';
 export type { CottonPromptInputProps, CottonPromptChip } from './CottonPromptInput';
+
+export { CottonCloudNavbar } from './CottonCloudNavbar';
+export type { CottonCloudNavbarProps, CottonCloudNavItem } from './CottonCloudNavbar';
