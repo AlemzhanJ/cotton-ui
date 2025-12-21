@@ -76,11 +76,11 @@
 }
 
 html {
-  background: #aed2e6;
+  background: #ffffff;
 }
 
 body {
-  background: #aed2e6;
+  background: #ffffff;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overscroll-behavior: none;

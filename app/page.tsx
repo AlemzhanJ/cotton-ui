@@ -134,7 +134,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#aed2e6]">
+    <div className="min-h-screen bg-white">
       {/* Cloud Navbar */}
       <CottonCloudNavbar
         logo={<CottonLogo />}
